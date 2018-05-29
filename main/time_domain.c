@@ -92,7 +92,6 @@ void init_timer(int Nus, fft_func func)
 void timer_evt_task(void *arg)
 {
     int page = 0;
-    uint64_t cnt = 0;
     while (1) {
         timer_event_t evt;
         BaseType_t type = xQueueReceive(timer_queue, &evt, portMAX_DELAY);
@@ -100,7 +99,7 @@ void timer_evt_task(void *arg)
         if(pdTRUE == type)
         {
             page = evt;
-            printf("page:%d \n", page);
+            //printf("page:%d \n", page);
             if(!cb_is_null())
             {
                 app_do_fft(page, sam);
